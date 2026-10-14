@@ -1,6 +1,6 @@
 import re
 def parse_record(line: s) -> dict:
-    ls = list(s.split(";"))
+    ls = list(line.split(";"))
     if len(ls) != 3:
         raise ValueError()
     res = {}
@@ -12,4 +12,11 @@ def parse_record(line: s) -> dict:
         raise ValueError()
     return res
 
-
+def read_valid(lines: list[str]) -> list[dict]:
+    res = []
+    for i in lines:
+        try:
+            stdict = parse_record(i)
+            res.append(stdict)
+        except:
+            continue
