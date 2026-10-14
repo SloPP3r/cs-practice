@@ -1,9 +1,6 @@
 import sys
-
-lines = sys.stdin.read().splitlines()
-total = {}
-count = {}
-for line in lines:
+lines = []
+for line in sys.stdin:
     city, temp, date = line.split(";")
     total[city] = total.get(city, 0) + float(temp)
     count[city] = count.get(city, 0) + 1
