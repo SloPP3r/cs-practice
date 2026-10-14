@@ -10,12 +10,16 @@ def parse_record(line):
     return res
 
 def read_valid(lines):
+    global cnt = 0
     res = []
     for i in lines:
+        if i == "" or i == "\n":
+            continue
         try:
             stdict = parse_record(i)
             res.append(stdict)
         except:
+            cnt += 1
             continue
     return res
 
@@ -40,5 +44,5 @@ def warmest_city(records):
         if average[i] > mx:
             mx = average[i]
             res = i
-    return mx
+    return res
     
