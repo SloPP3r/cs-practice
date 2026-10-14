@@ -1,5 +1,5 @@
 import re
-def parse_record(line: s) -> dict:
+def parse_record(line: str) -> dict:
     ls = list(line.split(";"))
     if len(ls) != 3:
         raise ValueError()
