@@ -20,3 +20,14 @@ def read_valid(lines: list[str]) -> list[dict]:
             res.append(stdict)
         except:
             continue
+
+def average_by_city(records: list[dict]) -> dict:
+    total = {}
+    count = {}
+    for i in records:
+        total[i["city"]] = total.get(i["city"], 0) + float(i["temperature"])
+        count[i["city"]] = count.get(i["city"], 0) + 1
+    res = {}
+    for city in total:
+        res[city] = total[city] / count[city]
+    return res
