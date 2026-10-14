@@ -1,7 +1,10 @@
 import sys
 from stats import *
-lines = sys.stdin.read().splitlines()
-cnt = 0
+lines = []
+for i in sys.stdin:
+    if i == "q\n":
+        break
+    lines.append(i)
 check_lines = read_valid(lines)
 print(len(check_lines))
 print(cnt)

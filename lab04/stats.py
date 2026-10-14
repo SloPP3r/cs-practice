@@ -1,12 +1,17 @@
-import re
 def parse_record(line):
+    line = line.strip()
+    line = line.replace("\n","")
     ls = list(line.split(";"))
+    
+    for i in ls:
+        if i == "":
+            raise ValueError()
     if len(ls) != 3:
         raise ValueError()
     res = {}
     res["city"] = ls[0]
     res["temperature"] = float(ls[1])
-    res["date"] = ls[2].replace("\n","")
+    res["date"] = ls[2]
     return res
 
 def read_valid(lines):
@@ -14,6 +19,7 @@ def read_valid(lines):
     cnt = 0
     res = []
     for i in lines:
+        
         if i == "" or i == "\n":
             continue
         try:
