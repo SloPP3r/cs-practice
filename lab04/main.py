@@ -1,16 +1,7 @@
 import sys
-lines = []
-for line in sys.stdin:
-    if line.rstrip() == "q":
-        break
-##    lines.append(line.rstrip)
-##    city, temp, date = line.split(";")
-##    total[city] = total.get(city, 0) + float(temp)
-##    count[city] = count.get(city, 0) + 1
-best = ""
-for city in total:  
-    if best == "" or total[city] / count[city] > total[best] / count[best]:
-        best = city
-print(len(lines))
-print(0)
-print(total[best] / count[best])
+from stats import *
+lines = sys.stdin.read().splitlines()
+check_lines = read_lines(lines)
+print(len(check_lines))
+print(len(lines) - len(check_lines))
+best = warmest_city(check_lines)

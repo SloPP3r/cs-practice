@@ -35,16 +35,7 @@ def average_by_city(records: list[dict]) -> dict:
     return result
 
 def warmest_city(records: list[dict]) -> str:
-    total = {}
-    count = {}
-    for i in records:
-        total[i["city"]] = total.get(i["city"], 0) + float(i["temperature"])
-        count[i["city"]] = count.get(i["city"], 0) + 1
-    avg = {}
-    for city in total:
-        avg[city] = total[city] / count[city]
-    sorted_avg = sorted(avg.items(), key = lambda x : x[0])
-    average = dict(sorted_avg)
+    average = average_by_city(records)
     res = ""
     mx = -10 ** 5
     for i in average:
