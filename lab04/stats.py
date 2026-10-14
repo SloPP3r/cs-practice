@@ -10,7 +10,8 @@ def parse_record(line):
     return res
 
 def read_valid(lines):
-    global cnt = 0
+    global cnt
+    cnt = 0
     res = []
     for i in lines:
         if i == "" or i == "\n":
