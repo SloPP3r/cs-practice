@@ -10,7 +10,7 @@ def parse_record(line):
         raise ValueError()
     res = {}
     res["city"] = ls[0]
-    res["temperature"] = float(ls[1])
+    res["temperature"] = float(ls[1].replace(",","."))
     res["date"] = ls[2]
     return res
 
