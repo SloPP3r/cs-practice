@@ -20,3 +20,18 @@ def count_levels(lines: list[str]) -> dict:
         except:
             res["BROKE"] = res["BROKE"] + 1
     return res
+
+def top_errors(lines: list[str], n: int) -> list[list]:
+    msgs = {}
+    for i in lines:
+        if i == "" or i == "\n":
+            continue
+        try:
+            line = parse_event(i)
+            if line["level"] == "ERROR":
+                msgs[line["message"]] = msgs.get(line["message"], 0) + 1
+    res = list(msgs.items())
+    res = sorted(res, key = lambda x : x[1], reverse = True)
+    res = res[:n]
+    print(res)
+    return res
