@@ -18,3 +18,12 @@ def deepest_path(paths):
             res = i
             mx = ln_ph
     return res
+
+def human_size(n_bytes):
+    alph = ["Б", "КБ", "МБ", "ГБ", "ТБ", "ПБ"]
+    cnt = 0
+    while n_bytes // 1024 >= 1:
+        n_bytes /= 1024
+        cnt += 1
+    res = str(n_bytes) + alph[cnt]
+    return res
