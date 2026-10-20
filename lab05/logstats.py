@@ -30,7 +30,9 @@ def top_errors(lines: list[str], n: int) -> list[list]:
             line = parse_event(i)
             if line["level"] == "ERROR":
                 msgs[line["message"]] = msgs.get(line["message"], 0) + 1
-    res = list(msgs.items())
+        except:
+            continue
+    res = msgs.items()
     res = sorted(res, key = lambda x : x[1], reverse = True)
     res = res[:n]
     print(res)
