@@ -47,4 +47,5 @@ def format_report(counts: dict, errors: list[list]) -> str:
     res += "\nЧастые ошибки:"
     for i in errors:
         res += f"\n- {i[0]} - {i[1]}"
+    res += "\n"
     return res
