@@ -3,7 +3,7 @@ def count_by_extension(paths):
     for i in paths:
         i_sp = i.strip().split(".")
         if "." in i:
-            res[i_sp[-1]] = res.get(i_sp[-1], 0) + 1
+            res[i_sp[-1].lower()] = res.get(i_sp[-1].lower(), 0) + 1
         else:
             res[""] = res.get("", 0) + 1
     return res
@@ -25,5 +25,5 @@ def human_size(n_bytes):
     while n_bytes // 1024 >= 1:
         n_bytes /= 1024
         cnt += 1
-    res = str(n_bytes) + alph[cnt]
+    res = str(n_bytes)+ " " + alph[cnt]
     return res
