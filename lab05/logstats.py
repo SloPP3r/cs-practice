@@ -6,7 +6,7 @@ def parse_event(line: str) -> dict:
     if spl[1] not in sample:
         raise ValueError()
     res["level"] = spl[1]
-    res["message"] = "".join(spl[2:])
+    res["message"] = " ".join(spl[2:]).replace("\n", "")
     return res
 
 def count_levels(lines: list[str]) -> dict:
@@ -16,7 +16,7 @@ def count_levels(lines: list[str]) -> dict:
             continue
         try:
             line = parse_event(i)
-            res[line["event"]] = res.get[line["event"]] + 1
+            res[line["level"]] = res[line["level"]] + 1
         except:
             res["BROKEN"] = res["BROKEN"] + 1
     return res
@@ -33,9 +33,9 @@ def top_errors(lines: list[str], n: int) -> list[list]:
         except:
             continue
     res = msgs.items()
+    res = list(map(list, res))
     res = sorted(res, key = lambda x : x[1], reverse = True)
     res = res[:n]
-    print(res)
     return res
 
 def format_report(counts: dict, errors: list[list]) -> str:
