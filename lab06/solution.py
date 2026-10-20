@@ -1,9 +1,10 @@
 def count_by_extension(paths):
     res = {}
     for i in paths:
-        i_sp = i.strip().split(".")
-        if "." in i:
-            res[i_sp[-1].lower()] = res.get(i_sp[-1].lower(), 0) + 1
+        i_sp = i.strip()
+        dot = i_sp.rfind(".")
+        if "." in i
+            res[i_sp[dot:].lower()] = res.get(i_sp[dot:].lower(), 0) + 1
         else:
             res[""] = res.get("", 0) + 1
     return res
