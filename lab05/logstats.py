@@ -8,3 +8,15 @@ def parse_event(line: str) -> dict:
     res["level"] = spl[1]
     res["message"] = "".join(spl[2:])
     return res
+
+def count_levels(lines: list[str]) -> dict:
+    res = {"DEBUG" : 0, "INFO" : 0, "WARNING" : 0, "ERROR" : 0, "BROKE" : 0}
+    for i in lines:
+        if i == "" or i == "\n":
+            continue
+        try:
+            line = parse_event(i)
+            res[line["event"]] = res.get[line["event"]] + 1
+        except:
+            res["BROKE"] = res["BROKE"] + 1
+    return res
