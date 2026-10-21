@@ -13,6 +13,7 @@ def parse_event(line: str) -> dict:
 def count_levels(lines: list[str]) -> dict:
     res = {}
     for i in lines:
+        i = i.replace("\n", "").strip()
         if i == "" or i == "\n":
             continue
         try:
