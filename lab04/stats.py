@@ -1,6 +1,5 @@
 def parse_record(line):
-    line = line.strip()
-    line = line.replace("\n","")
+    line = line.strip().replace("\n","")
     ls = list(line.split(";"))
     
     for i in ls:
