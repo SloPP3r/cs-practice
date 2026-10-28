@@ -1,10 +1,10 @@
 def parse_event(line: str) -> dict:
     res = {}
     line = line.replace("\n", "")
-    for i in range(len(line)):
-        line[i] = line[i].strip()
     sample = ["DEBUG", "INFO", "WARNING", "ERROR"]
     spl = line.split(" ")
+    for i in range(len(spl)):
+        spl[i] = spl[i].strip()
     res["time"] = spl[0]
     if spl[1] not in sample:
         raise ValueError()
