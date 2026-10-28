@@ -1,7 +1,8 @@
 def parse_event(line: str) -> dict:
     res = {}
     line = line.replace("\n", "")
-    line = list(map(strip, line))
+    for i in range(len(line)):
+        line[i] = line[i].strip()
     sample = ["DEBUG", "INFO", "WARNING", "ERROR"]
     spl = line.split(" ")
     res["time"] = spl[0]
