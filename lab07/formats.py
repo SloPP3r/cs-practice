@@ -33,7 +33,7 @@ def parse_settings(lines):
             lst.append(i)
             res[name] = lst
         else:
-            i.split(":")
+            i = i.split(":")
             i[0] = i[0].strip()
             i[1] = i[1].strip()
             if "." in i[1] or "," in i[1]:
