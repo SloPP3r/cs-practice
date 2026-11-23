@@ -106,4 +106,5 @@ def records_to_json(records):
             res += f'    "{j}": {srt[j]},\n'
         res = res[:-2]
         res += "\n}\n"
+    res += "]"
     return res
