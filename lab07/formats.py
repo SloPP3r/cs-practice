@@ -22,7 +22,8 @@ def parse_settings(lines):
     flag = False
     lst = []
     for i in lines:
-        i = i[:i.find("#")]
+        if i.find("#") != -1:
+            i = i[:i.find("#")]
         i = i.strip()
         if i == "": continue
         if i[-1] == ":":
@@ -35,7 +36,11 @@ def parse_settings(lines):
         else:
             i = i.split(":")
             i[0] = i[0].strip()
-            i[1] = i[1].strip()
+            try:
+                i[1] = i[1].strip()
+            except:
+                res[i[0]] = ""
+                continue
             if "." in i[1] or "," in i[1]:
                 temp = i[1].replace(",",".")
                 try:
@@ -71,11 +76,12 @@ def merge_by_key(rows, extra, key):
 
 def records_to_json(records):
     res = ""
+    res += "[\n  "
     for i in records:
         res += "{\n"
         srt = dict(sorted(i.items(), key = lambda x : x[0]))
         for j in srt:
-            res += f'  "{j}": {srt[j]},\n'
+            res += f'    "{j}": {srt[j]},\n'
         res = res[:-2]
         res += "\n}\n"
     return res
