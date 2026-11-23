@@ -51,13 +51,20 @@ def parse_settings(lines):
                     continue
                 except:
                         pass
-            if i[1] == "true":
+            if i[1] == "true" or i[1] == "yes":
                 val = True
-            elif i[1] == "false":
+            elif i[1] == "false" or i[1] == "no":
                 val = False
             else:
                 val = i[1]
             res[i[0]] = val
     return res
 
-                
+def merge_by_key(rows, extra, key):
+    for vl in extra:
+        for i in rows:
+            if i[key] == vl:
+                for j in extra[vl]:
+                    if j not in i:
+                        i[j] = extra[vl][j]
+    return rows
