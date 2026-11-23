@@ -30,17 +30,39 @@ def parse_settings(lines):
             name = i
             res[name] = []
             lst = []
+            continue
         elif i[-1] == "-":
-            lst.append(i)
+            i = i[1:].strip()
+            if "." in i or "," in i:
+                temp = i[1].replace(",",".")
+                try:
+                    val = float(temp)
+                    lst.append(val)
+                    res[name] = lst
+                    continue
+                except:
+                    pass
+            else:
+                try:
+                    val = int(i)
+                    res[i[0]] = val
+                    lst.append(val)
+                    res[name] = lst
+                    continue
+                except:
+                        pass
+            if i == "true" or i == "yes":
+                val = True
+            elif i == "false" or i == "no":
+                val = False
+            else:
+                val = i[1]
+            lst.append(val)
             res[name] = lst
         else:
             i = i.split(":")
             i[0] = i[0].strip()
-            try:
-                i[1] = i[1].strip()
-            except:
-                res[i[0]] = ""
-                continue
+            i[1] = i[1].strip()
             if "." in i[1] or "," in i[1]:
                 temp = i[1].replace(",",".")
                 try:
