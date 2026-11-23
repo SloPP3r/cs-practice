@@ -68,3 +68,14 @@ def merge_by_key(rows, extra, key):
                     if j not in i:
                         i[j] = extra[vl][j]
     return rows
+
+def records_to_json(records):
+    res = ""
+    for i in records:
+        res += "{\n"
+        srt = dict(sorted(i.items(), key = lambda x : x[0]))
+        for j in srt:
+            res += f'  "{j}": {srt[j]},\n'
+        res = res[:-2]
+        res += "\n}\n"
+    return res
