@@ -27,14 +27,14 @@ def parse_settings(lines):
         i = i.strip()
         if i == "": continue
         if i[-1] == ":":
-            name = i
+            name = i[:-1]
             res[name] = []
             lst = []
             continue
         elif i[0] == "-":
             i = i[1:].strip()
             if "." in i or "," in i:
-                temp = i[1].replace(",",".")
+                temp = i.replace(",",".")
                 try:
                     val = float(temp)
                     lst.append(val)
@@ -45,9 +45,8 @@ def parse_settings(lines):
             else:
                 try:
                     val = int(i)
-                    res[i[0]] = val
                     lst.append(val)
-                    res[name] = lst
+                    res[name] = lst.copy()
                     continue
                 except:
                         pass
@@ -56,9 +55,9 @@ def parse_settings(lines):
             elif i == "false" or i == "no":
                 val = False
             else:
-                val = i[1]
+                val = i
             lst.append(val)
-            res[name] = lst
+            res[name] = lst.copy()
         else:
             i = i.split(":")
             i[0] = i[0].strip()
@@ -106,7 +105,5 @@ def records_to_json(records):
             res += f'    "{j}": {srt[j]},\n'
         res = res[:-2]
         res += "\n  }\n"
-    else:
-        res += "\n"
     res += "]"
     return res
