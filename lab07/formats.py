@@ -31,14 +31,14 @@ def parse_settings(lines):
             res[name] = []
             lst = []
             continue
-        elif i[-1] == "-":
+        elif i[0] == "-":
             i = i[1:].strip()
             if "." in i or "," in i:
                 temp = i[1].replace(",",".")
                 try:
                     val = float(temp)
                     lst.append(val)
-                    res[name] = lst
+                    res[name] = lst.copy()
                     continue
                 except:
                     pass
@@ -105,6 +105,8 @@ def records_to_json(records):
         for j in srt:
             res += f'    "{j}": {srt[j]},\n'
         res = res[:-2]
-        res += "\n}\n"
+        res += "\n  }\n"
+    else:
+        res += "\n"
     res += "]"
     return res
